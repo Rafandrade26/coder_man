@@ -1,5 +1,5 @@
 #coding=UTF-8
-
+import interface
 import time
 import string
 from graphics import *
@@ -10,7 +10,7 @@ from graphics import *
 
 win = GraphWin("Janela", 1280, 720)
 
-bg = Rectangle(Point(0,0), Point (1280, 720))
+bg = Rectangle (Point(0,0), Point (1280, 720))
 bg.setFill(color_rgb(40, 100, 255))
 bg.draw(win)
 
@@ -26,7 +26,7 @@ while efeitoSombra > 0: #Adiciona camadas de texto cinza ligeiramente abaixo e �
 	efeitoSombra = efeitoSombra - 1
 
 
-title = Text(Point(640,230), "BEM-VINDO AO SIMULADOR DE ESCALONAMENTO") #Cria o título na cor preta padrão
+title = Text (Point(640,230), "BEM-VINDO AO SIMULADOR DE ESCALONAMENTO") #Cria o título na cor preta padrão
 title.setFace("arial") #Define a fonte do título (arial)
 title.setStyle("bold") #Define o estilo do título (negrito)
 title.setSize(30) #Define o tamanho da fonte (30)
@@ -93,8 +93,8 @@ maisEntradas = True
 
 while maisEntradas == True:
 	
-	print processos[-1]
-	textoInstruc = Text (Point (540, 320), "Digite o tamanho do processo " + str(letraProcesso) + ":") 
+	print (processos[-1])
+	textoInstruc = Text(Point (540, 320), "Digite o tamanho do processo " + str(letraProcesso) + ":") 
 	textoInstruc.setSize(22) #Altera o tamanho da fonte do texto de instruções
 	textoInstruc.setStyle("bold") #Torna em negrito o texto das instruções
 	textoInstruc.draw(win) #Mostra o texto com as instruções ao usuário
@@ -126,7 +126,7 @@ while maisEntradas == True:
 
 		if clickX > clkBoxEndXE and clickX < clkBoxEndXD and clickY > clkBoxEndYS and clickY < clkBoxEndYI:
 			processos.pop(0) #Elimina o primeiro item da lista de processos
-			print processos
+			print (processos)
 			processosRestantesRR = processosRestantesRR + 1
 			bg.undraw()
 			bg.draw(win)
@@ -135,65 +135,25 @@ while maisEntradas == True:
 			inputBox.undraw()
 
 inputBox.undraw()
-
-
-
-'''
-#################################################################
-
-
-print "\n######################################################"
-print "#####  Bem-vindo ao simulador de escalonamento!  #####"
-print "######################################################\n"
-
-
-letraProcesso = 1 #Define se o processo em questão é o processo A (=1), processo B (=2), processo C (=3) e assim por diante.
-processosRestantesRR = 0 #Define a quantidade de processos atualmente em execução. Variável usada somente em método Round Robin.
-
-time.sleep(.5)
-
-processos = []
-processos.append (int(raw_input("Digite o número de ciclos do processo A (digite 0 para encerrar as entradas): ")))
-processosRestantesRR = processosRestantesRR + 1
-
-alfabeto = string.ascii_uppercase #Cria uma lista com todas as letras maiúsculas do alfabeto
-
-#################################################################
-
-while processos[-1] != 0:
-	processos.append (int(raw_input("Digite o número de ciclos do processo " + alfabeto[letraProcesso] + " (digite 0 para encerrar as entradas): ")))
-	processosRestantesRR = processosRestantesRR + 1
-	letraProcesso = letraProcesso + 1
-	
-processos.pop(-1) #Elimina o último item da lista de processos, que é a entrada 0 digitado apenas para encerrar as entradas'''
+##########
 letraMax = letraProcesso - 1 #Define o último valor do processo (Ex: letraMax = 4 --> Processo D é o último. letraMax = 10 --> Processo J é o último, etc.)
 
 letraProcesso = 1 #Reseta o contador de volta para o processo A.
 valorTotalCiclos = 0 #Declaração inicial para a contagem de ciclos de clock total realizadas nas etapas.
 
-print ""
+print ("")
 
 while letraProcesso <= letraMax:
 	valorTotalCiclos = valorTotalCiclos + (processos[letraProcesso - 1])
-	print "O processo " + str(alfabeto[letraProcesso - 1]) + " executará " + str(processos[letraProcesso - 1]) + " ciclos."
+	print ("O processo " + str(alfabeto[letraProcesso - 1]) + " executará " + str(processos[letraProcesso - 1]) + " ciclos.")
 	letraProcesso = letraProcesso + 1
 	#time.sleep(.5)
-
-#################################################################
-'''
-while thicker < 5:
-	clickBoxFCFS = Rectangle(Point(clkBoxFCFSXE + thicker, clkBoxFCFSYS + thicker), Point(clkBoxFCFSXD - thicker, clkBoxFCFSYI - thicker))
-	clickBoxEnd.draw(win)
-	thicker = thicker + 1
-
-textEnd = Text (Point (725, 420), "ESCALONAR") 
-textEnd.setStyle("bold")
-'''
+###############################################################
 inputBox.undraw()
 
 #time.sleep(1)
 
-print "\nAgora selecione o tipo de escalonamento. Digite:\n"
+print ("\nAgora selecione o tipo de escalonamento. Digite:\n")
 #time.sleep(1.5)
 textoInstruc = Text (Point (600, 60), "Agora selecione o tipo de escalonamento. ")
 textoInstruc.setSize(22) #Altera o tamanho da fonte do texto de instruções
@@ -267,18 +227,17 @@ elif clickX > clkBoxRRXE and clickX < clkBoxRRXD and clickY > clkBoxRRYS and cli
 	tipoDeEscalonamento = 3
 	
 
-print '"1" para First Come First Served;'
+print ('"1" para First Come First Served;')
 #time.sleep(.5)
-print '"2" para Shortest Job First;'
+print ('"2" para Shortest Job First;')
 #time.sleep(.5)
-print '"3" para Round Robin.\n'
+print ('"3" para Round Robin.\n')
 
 #tipoDeEscalonamento = int(raw_input('Sua escolha: '))
-print "O progresso será mostrado a partir de parcelas de 5 ciclos de clock por vez.\n"
+print ("O progresso será mostrado a partir de parcelas de 5 ciclos de clock por vez.\n")
 #time.sleep(1)
 
 ##################################################################
-
 letraProcesso = 1
 etapa = 1
 ciclosRestantes = processos[letraProcesso - 1]
@@ -309,14 +268,14 @@ if tipoDeEscalonamento == 1:
 	portas = Image(Point(100,100), "portas.png")
 	portas.draw(win)
 
-	print '\nVocê escolheu "First Come First Served" (FCFS).\n'
+	print ('\nVocê escolheu "First Come First Served" (FCFS).\n')
 	time.sleep(.8)
 
 
 	while letraProcesso	<= letraMax:
 		while ciclosRestantes > 0:
-			print 'Etapa ' + str(etapa) + ':'
-			print 'Processo ' + str(alfabeto[letraProcesso - 1]) + ': ' + str(ciclosRestantes) + ' ciclos restantes...\n'
+			print ('Etapa ' + str(etapa) + ':')
+			print ('Processo ' + str(alfabeto[letraProcesso - 1]) + ': ' + str(ciclosRestantes) + ' ciclos restantes...\n')
 			ciclosRestantes = ciclosRestantes - 5
 			etapa = etapa + 1
 			
@@ -331,8 +290,8 @@ if tipoDeEscalonamento == 1:
 			time.sleep(.9)
 			
 			if ciclosRestantes <= 0:
-				print 'Processo concluído.\n'
-				print '######################################################\n'
+				print ('Processo concluído.\n')
+				print ('######################################################\n')
 				
 		if letraProcesso != letraMax:
 			ciclosRestantes = processos[letraProcesso]
@@ -343,14 +302,14 @@ if tipoDeEscalonamento == 1:
 
 		else:
 			etapa = etapa - 1
-			print "Tarefa concluída em " + str(etapa) + " etapas e " + str(valorTotalCiclos) + " ciclos de clock.\n"
+			print ("Tarefa concluída em ") + str(etapa) + " etapas e " + str(valorTotalCiclos) + " ciclos de clock.\n"
 			letraProcesso = letraProcesso + 1
 
 
 ################### Shortest Job First" (SJF) ####################
 
 elif tipoDeEscalonamento == 2:
-	print '\nVocê escolheu "Shortest Job First" (SJF).'
+	print ('\nVocê escolheu "Shortest Job First" (SJF).')
 	time.sleep(.8)
 	processos.sort()
 	ciclosRestantes = processos[0]
@@ -358,8 +317,8 @@ elif tipoDeEscalonamento == 2:
 
 	while letraProcesso	<= letraMax:
 		while ciclosRestantes > 0:
-			print 'Etapa ' + str(etapa) + ':'
-			print 'Processo ' + str(alfabeto[letraProcesso - 1]) + ': ' + str(ciclosRestantes) + ' ciclos restantes...\n'
+			print (('Etapa ') + str(etapa) + (':'))
+			print (('Processo ') + str(alfabeto[letraProcesso - 1]) + (': ') + str(ciclosRestantes) + (' ciclos restantes...\n'))
 			ciclosRestantes = ciclosRestantes - 5
 
 			square = Rectangle(Point(squareXE, squareYS), Point(squareXD, squareYI))
@@ -375,15 +334,15 @@ elif tipoDeEscalonamento == 2:
 			
 			if ciclosRestantes <= 0:
 				if ciclosRestantes == 0:
-					print 'Processo concluído.\n'
-					print '######################################################\n'
+					print ('Processo concluído.\n')
+					print ('######################################################\n')
 					squareYS = squareYS + 20
 					squareYI = squareYI + 20
 
 				else:
 					etapa = etapa + 1
-					print 'Processo concluído.\n'
-					print '######################################################\n'
+					print ('Processo concluído.\n')
+					print ('######################################################\n')
 					squareYS = squareYS + 20
 					squareYI = squareYI + 20
 				
@@ -393,13 +352,13 @@ elif tipoDeEscalonamento == 2:
 			
 		else:
 			etapa = etapa - 1
-			print "Tarefa concluída em " + str(etapa) + " etapas e " + str(valorTotalCiclos) + " ciclos de clock.\n"
+			print (("Tarefa concluída em ") + str(etapa) + (" etapas e ") + str(valorTotalCiclos) + (" ciclos de clock.\n"))
 			letraProcesso = letraProcesso + 1
 			
 ######################## Round Robin (RR) #########################
 
 elif tipoDeEscalonamento == 3:
-	print '\nVocê escolheu "Round Robin".\n'
+	print ('\nVocê escolheu "Round Robin".\n')
 	
 	time.sleep(.8)
 	processosRestantesRR = processosRestantesRR - 1
@@ -414,8 +373,8 @@ elif tipoDeEscalonamento == 3:
 #			print "letraMax: " + str(letraMax)
 #			print "letraProcesso: " + str(letraProcesso)
 			if ciclosRestantes > 0:
-				print 'Etapa ' + str(etapa) + ':'
-				print 'Processo ' + str(alfabeto[letraProcesso]) + ': ' + str(ciclosRestantes) + ' ciclos restantes...\n'
+				print (('Etapa ') + str(etapa) + (':'))
+				print ('Processo ' + str(alfabeto[letraProcesso]) + ': ' + str(ciclosRestantes) + ' ciclos restantes...\n')
 			processos[letraProcesso] = ciclosRestantes - 5
 
 			square = Rectangle(Point(squareXE, squareYS), Point(squareXD, squareYI))
@@ -430,8 +389,8 @@ elif tipoDeEscalonamento == 3:
 			time.sleep(.9)
 			
 			if ciclosRestantes - 1 <= 0:
-				print 'Processo ' + str(alfabeto[letraProcesso]) + ' concluído.\n'
-				print '######################################################\n'
+				print ('Processo ' + str(alfabeto[letraProcesso]) + ' concluído.\n')
+				print ('######################################################\n')
 				processosRestantesRR = processosRestantesRR - 1
 				letraProcesso = 0
 				letraMax = letraMax - 1
@@ -449,31 +408,29 @@ elif tipoDeEscalonamento == 3:
 				squareYS = squareYS + 20
 				squareYI = squareYI + 20
 
-	print "Tarefa concluída em " + str(etapa) + " etapas e " + str(valorTotalCiclos) + " ciclos de clock.\n"
+	print ("Tarefa concluída em " + str(etapa) + " etapas e " + str(valorTotalCiclos) + " ciclos de clock.\n")
 	
 	
 
 	while processosRestantesRR > 0:
 		
-		print 'Etapa ' + str(etapa) + ':'
-		print 'Processo ' + str(alfabeto[letraProcesso - 1]) + ': ' + str(ciclosRestantes) + ' ciclos restantes...\n'
+		print ('Etapa ' + str(etapa) + ':')
+		print ('Processo ' + str(alfabeto[letraProcesso - 1]) + ': ' + str(ciclosRestantes) + ' ciclos restantes...\n')
 		ciclosRestantes = ciclosRestantes - 5
 		etapa = etapa + 1
 		time.sleep(.9)
 		
 		if ciclosRestantes <= 0:
-			print 'Processo concluído.\n'
-			print '######################################################\n'
+			print ('Processo concluído.\n')
+			print ('######################################################\n')
 
 		if letraProcesso != letraMax:
 			ciclosRestantes = processos[letraProcesso]
 			letraProcesso = letraProcesso + 1
 		else:
 			etapa = etapa - 1
-			print "Tarefa concluída em " + str(etapa) + " etapas e " + str(valorTotalCiclos) + " ciclos de clock.\n"
+			print ("Tarefa concluída em " + str(etapa) + " etapas e " + str(valorTotalCiclos) + " ciclos de clock.\n")
 			letraProcesso = letraProcesso + 1
 
 else:
-	print '\nComando inválido. Por favor, tente novamente a partir do início.'
-
-
+	print ('\nComando inválido. Por favor, tente novamente a partir do início.')
